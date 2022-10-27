@@ -17,7 +17,18 @@ export const putDb = async (content) => {
   console.log('PUT to the DB');
 
   //creates connection to the database and the version that's being used.
-  const contactDb = await openDB('jate',1)
+  const contactDb = await openDB('jate',1);
+
+  //creates a new transaction and specifies the database and data privledges.
+  const tx= contactDb=transaction('jate', 'readwrite');
+
+  //open up desired object store.
+  const store=tx.objectStore('jate');
+
+  //get confirmation of request.
+  const request= store.put({content:content});
+  const result= await request;
+  console.log('saved to db', result)
 }
 
 //console.error('putDb not implemented');

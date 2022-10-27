@@ -27,12 +27,13 @@ module.exports = () => {
         short_name: 'JATE',
         description: 'a simple text editor that can handle JavaScript',
         start_url: './',
-        publicPath: '/.',
+        publicPath: './',
         icons:[
           {
             src: path.resolve('src/images/logo.png'),
-            size: '512x512',
-            destination: path.join('assets', 'logo')
+            size: '144x144',
+            destination: path.join('assets', 'icons'),
+            purpose: 'maskable'
           }
         ]
       }),
@@ -45,12 +46,12 @@ module.exports = () => {
     module: {
       rules: [
         {
-          test: /\.(png)$/i,
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
           type: 'asset/resource'
         },
         {
           test: /\.css$/i,
-          use: ['css-loader']
+          use: ['style-loader','css-loader']
         },
         {
           test: /\.m?js$/,
